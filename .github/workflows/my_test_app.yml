@@ -32,7 +32,7 @@ jobs:
     - name: Run my github actions test app
       env:
         MAXIMO_APIKEY: ${{ secrets.MAXIMO_APIKEY }}
-        TARGETHOST: ${{ env.TARGETHOST }}
+        TARGETHOST: ${{ vars.TARGETHOST }}
       run: |
         python main.py ${{ github.event.inputs.folder }} ${{ github.event.inputs.product }}
         echo $TARGETHOST
