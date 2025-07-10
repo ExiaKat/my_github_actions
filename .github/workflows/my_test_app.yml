@@ -9,11 +9,11 @@ on:
       folder:
         description: 'Devops script folder name'
         required: true
-        default: 'autoscripts'
+        default: 'automationscripts'
       product:
         description: 'Product name'
         required: true
-        default: 'product_name'
+        default: 'barwon'
 
 permissions:
   contents: read
@@ -21,6 +21,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: my_env
     
     steps:
     - uses: actions/checkout@v4
