@@ -4,19 +4,24 @@
 name: Python application
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      folder:
+        description: 'Devops script folder name'
+        required: true
+        default: 'autoscripts'
+      product:
+        description: 'Product name'
+        required: true
+        default: 'product_name'
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
@@ -25,6 +30,6 @@ jobs:
         python-version: "3.10"
     - name: Run my github actions test app
       env:
-        MAXIMO_APIKEY: 123456
+        MAXIMO_APIKEY: ${{ secrets.MAXIMO_APIKEY }}
       run: |
-        python main.py autoscript barwon
+        python main.py ${{ github.event.inputs.folder }} ${{ github.event.inputs.product }}
