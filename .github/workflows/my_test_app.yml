@@ -34,3 +34,4 @@ jobs:
         MAXIMO_APIKEY: ${{ secrets.MAXIMO_APIKEY }}
       run: |
         python main.py ${{ github.event.inputs.folder }} ${{ github.event.inputs.product }}
+        echo $TARGETHOST
